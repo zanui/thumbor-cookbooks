@@ -115,6 +115,7 @@ tree
 webp
 libwebp-dev
 python-dateutil
+libopencv-dev
 }
 
 required_packages.each do |pkg|
