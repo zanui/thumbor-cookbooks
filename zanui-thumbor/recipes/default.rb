@@ -25,6 +25,7 @@ apt_repository "multiverse" do
 end
 
 required_packages = %w{
+libopencv-dev
 libevent-dev
 libxml2-dev
 libcurl4-gnutls-dev
@@ -115,7 +116,6 @@ tree
 webp
 libwebp-dev
 python-dateutil
-libopencv-dev
 }
 
 required_packages.each do |pkg|
