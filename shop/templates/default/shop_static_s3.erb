@@ -1,0 +1,42 @@
+<% if @proxy_cache_enabled %>
+proxy_cache_path <%= @proxy_cache_path %> levels=1:2 keys_zone=<%= @proxy_cache_key_zone %>:8m max_size=1000m inactive=60m;
+<% end %>
+
+server {
+    listen      <%= @server_port %>;
+    server_name <%= @server_name %>;
+
+    location = /favicon.ico {
+        return 204;
+    }
+
+    location ~* ^/s3/(.*) {
+        set $s3_region '<%= @s3_region %>';
+        set $s3_bucket '<%= @s3_bucket %>';
+        set $url_full  '$1';
+        set $s3_host   's3-${s3_region}.amazonaws.com';
+
+        <% if @proxy_cache_enabled %>
+        proxy_cache       <%= @proxy_cache_key_zone %>;
+        proxy_cache_valid 200 302 90s;
+        proxy_cache_valid 404 30s;
+        <% end %>
+
+        proxy_redirect off;
+        proxy_set_header       Host $s3_host;
+        proxy_set_header       Authorization '';
+        proxy_hide_header      x-amz-id-2;
+        proxy_hide_header      x-amz-request-id;
+        proxy_ignore_headers   "Set-Cookie";
+        proxy_buffering        off;
+        proxy_intercept_errors on;
+
+        resolver   8.8.8.8;
+        proxy_pass http://${s3_host}/${s3_bucket}/${url_full};
+    }
+
+    rewrite "^/b/(.*)$" /s3/media/brand/$1 last;
+    rewrite "^/c/.*-([0-9]{2})([0-9]+)-([0-9]?-?.+\.[^.]+)$" /s3/media/campaign/$1/$2/$3 last;
+    rewrite "^/p/.*-([0-9]{2})([0-9]+)-([0-9]?-?.+\.[^.]+)$" /s3/media/product/$1/$2/$3 last;
+    rewrite "^/s/.*-([0-9]{2})([0-9]+)-([0-9]?-?.+\.[^.]+)$" /s3/media/simple/$1/$2/$3 last;
+}
