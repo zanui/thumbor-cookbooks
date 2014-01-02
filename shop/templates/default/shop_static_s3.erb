@@ -40,6 +40,4 @@ server {
     rewrite "^/p/.*-([0-9]{2})([0-9]+)-([0-9]?-?.+\.[^.]+)$" /s3/media/product/$1/$2/$3 last;
     rewrite "^/s/.*-([0-9]{2})([0-9]+)-([0-9]?-?.+\.[^.]+)$" /s3/media/simple/$1/$2/$3 last;
     rewrite "^/(.*)$" /s3/media/$1 last;
-    #rewrite "^/cms/(.*)$" /s3/media/cms/$1 last;
-    #rewrite "^/superattribute/(.*)$" /s3/media/cms/$1 last;
 }
