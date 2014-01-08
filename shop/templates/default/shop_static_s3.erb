@@ -11,10 +11,8 @@ server {
     }
 
     location @static {
-        rewrite "^/s3/media/(.*)$" /$1;
-
         resolver   8.8.8.8;
-        proxy_pass http://static.zanui.com.au/$1;
+        proxy_pass http://static.zanui.com.au$request_uri;
     }
 
     location ~* ^/s3/(.*) {
