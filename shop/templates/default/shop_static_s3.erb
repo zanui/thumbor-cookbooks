@@ -10,6 +10,13 @@ server {
         return 204;
     }
 
+    location @static {
+        rewrite "^/s3/media/(.*)$" /$1;
+
+        resolver   8.8.8.8;
+        proxy_pass http://static.zanui.com.au/$1;
+    }
+
     location ~* ^/s3/(.*) {
         set $s3_region '<%= @s3_region %>';
         set $s3_bucket '<%= @s3_bucket %>';
@@ -33,6 +40,9 @@ server {
 
         resolver   8.8.8.8;
         proxy_pass http://${s3_host}/${s3_bucket}/${url_full};
+
+        error_page 404 = @static;
+        error_page 403 = @static;
     }
 
     rewrite "^/b/(.*)$" /s3/media/brand/$1 last;
