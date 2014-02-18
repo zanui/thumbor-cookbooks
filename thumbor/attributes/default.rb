@@ -22,6 +22,7 @@ default['thumbor']['nginx']['proxy_cache']['enabled'] = false
 default['thumbor']['nginx']['proxy_cache']['path'] = '/var/www/thumbor_cache'
 default['thumbor']['nginx']['proxy_cache']['key_zone'] = 'thumbor_cache'
 
+default['thumbor']['version'] = 'master'
 default['thumbor']['processes'] = 1
 default['thumbor']['base_port'] = 9000
 default['thumbor']['key'] = 'testkey'
@@ -31,8 +32,8 @@ default['thumbor']['storage']['type'] = 'file'
 default['thumbor']['options'] = {}
 
 # AWS CONFIG
-default['thumbor']['options']['AWS_ACCESS_KEY'] = 'AKIAI4KPHVXBKZKDTJMQ'
-default['thumbor']['options']['AWS_SECRET_KEY'] = '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'
+default['thumbor']['options']['AWS_ACCESS_KEY'] = 'XXXXXX'
+default['thumbor']['options']['AWS_SECRET_KEY'] = 'XXXXXX'
 default['thumbor']['options']['S3_ALLOWED_BUCKETS'] = 'zanui-thumbor'
 default['thumbor']['options']['STORAGE_BUCKET'] = 'zanui-thumbor'
 default['thumbor']['options']['S3_LOADER_BUCKET'] = 'zanui-thumbor'
