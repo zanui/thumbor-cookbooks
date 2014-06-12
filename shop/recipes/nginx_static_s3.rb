@@ -7,6 +7,15 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# Create parent directory as cache directory will be created by nginx
+directory "#{node['shop']['static_s3']['nginx']['proxy_cache']['path']}/.." do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create
+  recursive true
+end
+
 template "#{node['nginx']['dir']}/sites-available/shop_static_s3" do
   source 'shop_static_s3.erb'
   owner  'root'
