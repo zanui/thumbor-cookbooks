@@ -6,6 +6,8 @@ server {
     listen      <%= @server_port %>;
     server_name <%= @server_name %>;
 
+    recursive_error_pages  on;
+
     location = /favicon.ico {
         return 204;
     }
@@ -17,12 +19,13 @@ server {
         <% if @static_fallback_enabled %>
         error_page 404 = @static_fallback;
         error_page 403 = @static_fallback;
+        proxy_intercept_errors on;
         <% end %>
     }
 
     <% if @static_fallback_enabled %>
     location @static_fallback {
-        resolver   8.8.8.8;
+        resolver   127.0.0.1;
         proxy_pass http://<%= @static_fallback_host %>$request_uri;
     }
     <% end %>

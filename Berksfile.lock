@@ -1,5 +1,6 @@
 DEPENDENCIES
   datadog (~> 2.0.0)
+  dnsmasq (~> 0.2.0)
   opsworks_stack_state_sync
     path: cookbooks/opsworks_stack_state_sync
   shop
@@ -15,6 +16,9 @@ GRAPH
     apt (>= 0.0.0)
     chef_handler (~> 1.1.0)
     yum (>= 0.0.0)
+  dnsmasq (0.2.0)
+    hosts_file (>= 0.0.0)
+  hosts_file (0.2.0)
   nginx (1.8.0)
     apt (>= 0.0.0)
     build-essential (>= 0.0.0)
