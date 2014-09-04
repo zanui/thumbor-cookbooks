@@ -1,0 +1,39 @@
+DEPENDENCIES
+  datadog (~> 2.0.0)
+  opsworks_stack_state_sync
+    path: cookbooks/opsworks_stack_state_sync
+  shop
+    path: cookbooks/shop
+  thumbor
+  yum (= 2.4.2)
+
+GRAPH
+  apt (2.5.3)
+  build-essential (2.0.6)
+  chef_handler (1.1.6)
+  datadog (2.0.0)
+    apt (>= 0.0.0)
+    chef_handler (~> 1.1.0)
+    yum (>= 0.0.0)
+  nginx (1.8.0)
+    apt (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    ohai (>= 1.1.4)
+    runit (>= 0.0.0)
+    yum (>= 0.0.0)
+  ohai (2.0.1)
+  opsworks_stack_state_sync (0.0.0)
+  python (1.4.4)
+    build-essential (>= 0.0.0)
+    yum (>= 0.0.0)
+  runit (1.4.6)
+    build-essential (>= 0.0.0)
+    yum (< 3.0.0)
+  shop (0.1.0)
+    nginx (>= 0.0.0)
+    thumbor (>= 0.0.0)
+  thumbor (0.4.0)
+    apt (>= 0.0.0)
+    nginx (>= 0.0.0)
+    python (>= 0.0.0)
+  yum (2.4.2)
