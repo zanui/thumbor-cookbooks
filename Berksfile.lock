@@ -36,7 +36,7 @@ GRAPH
   shop (0.1.0)
     nginx (>= 0.0.0)
     thumbor (>= 0.0.0)
-  thumbor (0.4.0)
+  thumbor (0.4.1)
     apt (>= 0.0.0)
     nginx (>= 0.0.0)
     python (>= 0.0.0)

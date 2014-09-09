@@ -194,6 +194,15 @@ end
 #   mode   '0755'
 # end
 
+directory node['thumbor']['nginx']['proxy_cache']['path'] do
+  owner node['nginx']['user']
+  group node['nginx']['group']
+  mode '0700'
+  action :create
+  recursive true
+  not_if node['thumbor']['nginx']['proxy_cache']['path'].nil?
+end
+
 template '/etc/nginx/conf.d/thumbor.conf' do
   source 'nginx.conf.erb'
   owner 'root'
