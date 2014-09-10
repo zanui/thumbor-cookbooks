@@ -34,6 +34,7 @@ GRAPH
     build-essential (>= 0.0.0)
     yum (< 3.0.0)
   shop (0.1.0)
+    dnsmasq (>= 0.0.0)
     nginx (>= 0.0.0)
     thumbor (>= 0.0.0)
   thumbor (0.4.1)

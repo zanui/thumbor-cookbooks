@@ -8,3 +8,4 @@
 #
 
 include_recipe 'shop::nginx_static_s3'
+include_recipe 'shop::dnsmasq'
